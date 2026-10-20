@@ -1,0 +1,42 @@
+Q1: 
+    ...List out, in counterclockwise order, 3 vertex positions for the triangle that is the top-left half 
+    of the quad, and then 3 vertex positions for the triangle that is the bottom-right half of the quad.
+
+A1:
+    First: define the dimensions of a rectangle half the size of the screen
+        rec = (800/2, 600/2) = (400,300)
+    The origin is in the top-left. A centered rectangle would have exactly half of the unoccupied space in each dimension 
+    on either side of its bounds.
+        topleft = (800/4, 600/4) = (200, 150)
+    Account for the half-pixel offset to match vector dimensions with pixel dimensions
+        topleft = (200+0.5, 150+0.5) = (200.5, 150.5)
+    We have the top-left coordinate. Now to use the dimensions of the rectangle to find the rest
+        topright        = topleft + rec.x = (200.5 + 400, 150.5)        = (600.5, 150.5)
+        bottomleft      = topleft + rec.y = (200.5, 150.5 + 300)        = (200.5, 450.5)
+        bottomright     = topleft + rec   = (200.5 + 400, 150.5 + 300)  = (600.5, 450.5)
+    Now lay out the points on the two triangles in counter-clockwise order
+        upperleft   = { (200.5, 150.5), (200.5, 450.5), (600.5, 150.5) }
+        lowerright  = { (600.5, 150.5), (200.5, 450.5), (600.5, 450.5) }
+
+-----
+
+Q2:
+    ...propose a way to represent the above quad that does not duplicate vertex position information, and that uses less memory...
+
+A2:
+    The above positions only contain four unique floating point numbers: 
+        set = {200.5, 150.5, 600.5, 450.5}
+    Held this way, the coordinate values take less space and the triangles can be represented as :
+        upperleft   = { (set[0], set[1]), (set[0], set[3]), (set[2], set[1]) }
+        lowerright  = { (set[2], set[1]), (set[0], set[3]), (set[2], set[3]) }
+
+-----
+
+Q3:
+    What are the (normalized) UV coordinates corresponding to the screen point (500, 301)?
+
+A3:
+    First correct the offset from pixel-center to vertex-center
+        (500-0.5, 301-0.5) = (499.5, 300.5)
+    Then get the position relative to the size of the screen
+        (499.5/800, 300.5/600) = (0.624375, 0.5008333...)
