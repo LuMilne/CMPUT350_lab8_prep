@@ -4,7 +4,7 @@
 
 struct BasicTransform {
     // methods...
-    BasicTransform(sf::Vector2f s, sf::Vector2f t): scale(s), translation(t);
+    BasicTransform(sf::Vector2f s, sf::Vector2f t): scale(s), translation(t) {}
 
     // Scale, then translate and return
     sf::Vector2f applyPoint(const sf::Vector2f& p) {
