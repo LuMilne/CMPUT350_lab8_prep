@@ -1,0 +1,10 @@
+Q: 
+    ...x-axis pointing right and the y-axis pointing down. Does increasing θ perform a clockwise, or counterclockwise rotation? What if the y-axis points up?
+
+A: 
+    Consider a right-angle rotation (PI/2) on a vector (3,4). That is to say: pointing right and down.
+        newPoint.x = cos(PI/2) * 3 - sin(PI/2) * 4 = 0*3 - 1*4 = -4
+        newPoint.y = sin(PI/2) * 3 + cps(PI/2) * 4 = 1*3 + 0*4 = 3
+    After the rotation, our new vector is (-4, 3). That is to say: pointing left and down. θ performs a clockwise rotation.
+        If y were to point up, that would turn this from a right-and-down to left-and-down rotation to a right-and-up to left-and-up rotation: counter-clockwise.
+        Therefore, reversing the direction of y reverses the direction of rotation in a 2D plane.
