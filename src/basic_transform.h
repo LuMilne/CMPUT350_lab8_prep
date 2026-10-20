@@ -8,7 +8,7 @@ public:
 
     // Scale, then translate and return
     sf::Vector2f applyPoint(const sf::Vector2f& p) {
-        sf::Vector2f out =  sf::Vector2f(
+        return sf::Vector2f(
             this->scale.x * p.x + this->translation.x,
             this->scale.y * p.y + this->translation.y
         );
@@ -16,7 +16,7 @@ public:
 
     // Scale and return (vector does not care about origin)
     sf::Vector2f applyVector(const sf::Vector2f& v) {
-        sf::Vector2f out =  sf::Vector2f(
+        return sf::Vector2f(
             this->scale.x * v.x,
             this->scale.y * v.y
         );
